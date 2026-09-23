@@ -1,7 +1,7 @@
 import paho.mqtt.client as mqtt
 
 BROKER = "localhost"
-PORT = 1883
+PORT = 8883
 TOPIC = "sensors/#"  # the # wildcard subscribes to all sensor sub-topics
 
 def on_connect(client, userdata, flags, rc, properties=None):
@@ -15,6 +15,12 @@ def on_message(client, userdata, msg):
 client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
 client.on_connect = on_connect
 client.on_message = on_message
+
+client.tls_set(
+    ca_certs="certs/ca.crt",
+    certfile="certs/subscriber.crt",
+    keyfile="certs/subscriber.key"
+)
 
 client.connect(BROKER, PORT, 60)
 client.loop_forever()

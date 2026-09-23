@@ -4,11 +4,18 @@ import random
 import json
 
 BROKER = "localhost"
-PORT = 1883
+PORT = 8883
 NODE_ID = "node-02"
 TOPIC = f"sensors/{NODE_ID}/humidity"
 
 client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
+
+client.tls_set(
+    ca_certs="certs/ca.crt",
+    certfile="certs/node-02.crt",
+    keyfile="certs/node-02.key"
+)
+
 client.connect(BROKER, PORT, 60)
 
 print(f"{NODE_ID} publishing to {TOPIC} — Ctrl+C to stop")
