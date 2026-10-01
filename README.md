@@ -1,3 +1,7 @@
+## Security
+
+See [THREAT_MODEL.md](./THREAT_MODEL.md) for the full write-up: threats considered, mitigations implemented (mTLS, TLS 1.3, identity-based auth, topic-level ACLs), and tested attack scenarios
+
 # Secure IoT-to-Cloud Sensor Network
 
 A simulated IoT pipeline demonstrating secure device-to-cloud data flow: 
